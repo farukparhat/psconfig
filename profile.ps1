@@ -1,11 +1,41 @@
-﻿# --- Chocolatey Profile ---
+﻿# ------ Chocolatey Profile ------
 
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path($ChocolateyProfile)) {
     Import-Module "$ChocolateyProfile"
 }
 
-# --- Git ---
+# ------ Shortcuts ------
+
+function Sublime ($file)
+{
+    & 'C:\Program Files\Sublime Text 3\subl.exe' $file
+}
+
+# ------ Git ------
+
+function gcheckout ($pattern)
+{
+    $b = git branch -a
+    if (!$b)
+    {
+        return
+    }
+
+    if ($pattern)
+    {
+        $b = $b | sls $pattern
+    }
+
+    $b = $b | fzf
+    if (!$b)
+    {
+        return
+    }
+
+    $b = $b.Replace("*", "").Trim()
+    $b
+}
 
 function gdiff
 {
@@ -51,7 +81,7 @@ function gcommit-and-push ($message)
     }
 }
 
-# --- Fast Edits ---
+# ------ Fast Edits ------
 
 function evim
 {
@@ -60,14 +90,15 @@ function evim
 
 function epp
 {
-    e $PROFILE
+    e ~\psconfig\profile.ps1
 }
 
 function e ($file)
 {
     if (!$file)
     {
-        Write-Output "Please enter a file path"
+        $file = fzf
+        e $file
     }
     else
     {
@@ -75,7 +106,7 @@ function e ($file)
     }
 }
 
-# --- Directory Commands ---
+# ------ Directory Commands ------
 
 function ws
 {
@@ -97,7 +128,7 @@ function home
     cd ~
 }
 
-# --- Initialization ---
+# ------ Initialization ------
 
 function init
 {
