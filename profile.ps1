@@ -16,25 +16,31 @@ function Sublime ($file)
 
 function gcheckout ($pattern)
 {
-    $b = git branch -a
+    $b = ""
+    if ($pattern)
+    {
+        $b = git branch -a
+        $b = $b | sls $pattern
+    }
+    else
+    {
+        $b = git branch
+    }
+
     if (!$b)
     {
         return
     }
 
-    if ($pattern)
-    {
-        $b = $b | sls $pattern
-    }
-
-    $b = $b | fzf
+    $b = $b | sort | fzf
     if (!$b)
     {
         return
     }
 
     $b = $b.Replace("*", "").Trim()
-    $b
+
+    git checkout $b
 }
 
 function gdiff
