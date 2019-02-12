@@ -108,7 +108,7 @@ function e ($file)
     }
     else
     {
-        gvim --remote $file
+        gvim --remote-silent $file
     }
 }
 
