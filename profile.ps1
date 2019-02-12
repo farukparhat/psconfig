@@ -60,7 +60,7 @@ function evim
 
 function epp
 {
-    e $PROFILE
+    e ~\psconfig\profile.ps1
 }
 
 function e ($file)
@@ -71,7 +71,7 @@ function e ($file)
     }
     else
     {
-        gvim --remote $file
+        gvim --remote-silent $file
     }
 }
 
