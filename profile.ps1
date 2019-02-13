@@ -12,6 +12,53 @@ function Sublime ($file)
     & 'C:\Program Files\Sublime Text 3\subl.exe' $file
 }
 
+# ------ Date ------
+
+function get-today
+{
+    return Get-Date -UFormat "%Y-%m-%d"
+}
+
+# ------ Notes ------
+
+$notesPath = "~\notes"
+
+function notes
+{
+    cd $notesPath
+}
+
+function notes-sync
+{
+    $prevDir = pwd
+    cd $notesPath
+
+    git pull
+    git add .
+    git commit -m "[Notes] Auto Sync Commit"
+    git push
+
+    cd $prevDir
+}
+
+function notes-new ($file)
+{
+    $today = get-today
+    $prevDir = pwd
+    cd $notesPath
+
+    if (!$file)
+    {
+        e .\unorganized\$today.md
+    }
+    else
+    {
+        e $file
+    }
+
+    cd $prevDir
+}
+
 # ------ Git ------
 
 function gcheckout ($pattern)
