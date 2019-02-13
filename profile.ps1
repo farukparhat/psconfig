@@ -209,6 +209,8 @@ function init
     if ($host.Name -eq "ConsoleHost")
     {
         Import-Module PSReadLine
+        Remove-PSReadlineKeyHandler "Ctrl+r"
+        Import-Module PSFzf
     }
 }
 
