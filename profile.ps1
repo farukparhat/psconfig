@@ -41,19 +41,19 @@ function notes-sync
     cd $prevDir
 }
 
-function notes-new ($file)
+function notes-new ($directory)
 {
     $today = get-today
     $prevDir = pwd
     cd $notesPath
 
-    if (!$file)
+    if (!$directory)
     {
         e .\unorganized\$today.md
     }
     else
     {
-        e $file
+        e $directory\$today.md
     }
 
     cd $prevDir
@@ -61,7 +61,15 @@ function notes-new ($file)
 
 # ------ Git ------
 
-function gcheckout ($pattern)
+function git-sync
+{
+    git pull
+    git add .
+    git commit -m "Auto Sync Commit"
+    git push
+}
+
+function git-checkout ($pattern)
 {
     $b = ""
     if ($pattern)
@@ -90,27 +98,27 @@ function gcheckout ($pattern)
     git checkout $b
 }
 
-function gdiff
+function git-diff
 {
     git diff
 }
 
-function gstatus
+function git-status
 {
     git status
 }
 
-function gpull
+function git-pull
 {
     git pull
 }
 
-function gpush
+function git-push
 {
     git push
 }
 
-function gclone ($repo)
+function git-clone ($repo)
 {
     if (!$repo)
     {
@@ -122,7 +130,7 @@ function gclone ($repo)
     }
 }
 
-function gcommit-and-push ($message)
+function git-commit-and-push ($message)
 {
     if (!$message)
     {
@@ -186,6 +194,11 @@ function home
 function init
 {
     Set-PSReadlineOption -BellStyle None
+
+    if ($host.Name -eq "ConsoleHost")
+    {
+        Import-Module PSReadLine
+    }
 }
 
 init
