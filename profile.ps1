@@ -28,6 +28,17 @@ function notes
     cd $notesPath
 }
 
+function notes-todo
+{
+    $prevDir = pwd
+    cd $notesPath
+
+    $todo = dir -Recurse | sls -Pattern "- \[ \]"
+
+    cd $prevDir
+    return $todo
+}
+
 function notes-sync
 {
     $prevDir = pwd
