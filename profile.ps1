@@ -7,9 +7,9 @@ if (Test-Path($ChocolateyProfile)) {
 
 # ------ Shortcuts ------
 
-function Sublime ($file)
+function sublime ($file)
 {
-    & 'C:\Program Files\Sublime Text 3\subl.exe' $file
+    & 'c:\program files\sublime text 3\subl.exe' $file
 }
 
 # ------ Date ------
@@ -105,6 +105,9 @@ function git-checkout ($pattern)
     }
 
     $b = $b.Replace("*", "").Trim()
+    $b = $b.Replace("remotes/origin/", "")
+
+    echo "Checking out branch: $b"
 
     git checkout $b
 }
@@ -127,6 +130,18 @@ function git-pull
 function git-push
 {
     git push
+}
+
+function git-get-current-branch
+{
+    $branch = git branch | sls "\* (.*)" -AllMatches | %{$_.Matches.Groups[1].Value}
+    return $branch
+}
+
+function git-push-setupstream
+{
+    $branch = git-get-current-branch
+    & git push origin --set-upstream $branch
 }
 
 function git-clone ($repo)
