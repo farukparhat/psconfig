@@ -55,19 +55,15 @@ function notes-sync
 function notes-new ($directory)
 {
     $today = get-today
-    $prevDir = pwd
-    cd $notesPath
 
     if (!$directory)
     {
-        e .\unorganized\$today.md
+        & e "$today.md"
     }
     else
     {
-        e $directory\$today.md
+        & e "$directory\$today.md"
     }
-
-    cd $prevDir
 }
 
 # ------ Git ------
@@ -224,7 +220,9 @@ function init
     if ($host.Name -eq "ConsoleHost")
     {
         Import-Module PSReadLine
+        Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
         Remove-PSReadlineKeyHandler "Ctrl+r"
+
         Import-Module PSFzf
     }
 }
