@@ -78,12 +78,15 @@ function git-sync
 
 function git-sync-all
 {
+    echo "------ Syncing PSConfig ------"
     pushd ~\psconfig
     git-sync
 
+    echo "------ Syncing VimConfig ------"
     cd ~\.vim
     git-sync
 
+    echo "------ Syncing Notes ------"
     notes
     git-sync
 
