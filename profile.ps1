@@ -76,6 +76,20 @@ function git-sync
     git push
 }
 
+function git-sync-all
+{
+    pushd ~\psconfig
+    git-sync
+
+    cd ~\.vim
+    git-sync
+
+    notes
+    git-sync
+
+    popd
+}
+
 function git-checkout ($pattern)
 {
     $b = ""
