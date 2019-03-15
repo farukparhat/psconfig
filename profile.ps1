@@ -230,8 +230,13 @@ function home
 
 # ------ Initialization ------
 
-function init
+function Initialize-Personal-Powershell
 {
+    $powershellShortcutPath = "C:\Users\papaerha\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell"
+    $shortcutPath = "~\psconfig\Windows PowerShell.lnk"
+
+    & cp $shortcutPath $powershellShortcutPath
+
     Set-PSReadlineOption -BellStyle None
 
     if ($host.Name -eq "ConsoleHost")
@@ -244,4 +249,4 @@ function init
     }
 }
 
-init
+Initialize-Personal-Powershell
