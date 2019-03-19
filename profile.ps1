@@ -234,8 +234,10 @@ function Initialize-Personal-Powershell
 {
     $powershellShortcutPath = "C:\Users\papaerha\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell"
     $shortcutPath = "$PSScriptRoot\Windows PowerShell.lnk"
-
     & cp $shortcutPath $powershellShortcutPath
+
+    Import-Module Posh-Git
+    $GitPromptSettings.BeforeText = "`n["
 
     Import-Module PSReadLine
 
