@@ -235,7 +235,7 @@ function Install-Personal-Dependencies
     Install-Module PSReadLine
     Install-Module PSFzf
     Install-Module Fasdr
-    Install-Module PowerShellGet
+    Install-Module PowerShellGet -Force -AllowClobber
 
     PowerShellGet\Install-Module posh-git -AllowPrerelease -Force
 }
