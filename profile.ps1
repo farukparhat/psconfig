@@ -237,16 +237,14 @@ function Initialize-Personal-Powershell
 
     & cp $shortcutPath $powershellShortcutPath
 
+    Import-Module PSReadLine
+
     Set-PSReadlineOption -BellStyle None
+    Set-PSReadlineOption -ShowToolTips
+    Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
+    Remove-PSReadlineKeyHandler "Ctrl+r"
 
-    if ($host.Name -eq "ConsoleHost")
-    {
-        Import-Module PSReadLine
-        Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
-        Remove-PSReadlineKeyHandler "Ctrl+r"
-
-        Import-Module PSFzf
-    }
+    Import-Module PSFzf
 }
 
 Initialize-Personal-Powershell
