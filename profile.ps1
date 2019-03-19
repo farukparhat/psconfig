@@ -230,6 +230,16 @@ function home
 
 # ------ Initialization ------
 
+function Install-Personal-Dependencies
+{
+    Install-Module PSReadLine
+    Install-Module PSFzf
+    Install-Module Fasdr
+    Install-Module PowerShellGet
+
+    PowerShellGet\Install-Module posh-git -AllowPrerelease -Force
+}
+
 function Initialize-Personal-Powershell
 {
     $powershellShortcutPath = "$Home\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Windows PowerShell"
@@ -237,7 +247,8 @@ function Initialize-Personal-Powershell
     & cp $shortcutPath $powershellShortcutPath
 
     Import-Module Posh-Git
-    $GitPromptSettings.BeforeText = "`n["
+    $GitPromptSettings.AfterStatus.Text = "]`n"
+    $GitPromptSettings.DefaultPromptPath.ForegroundColor = 0x569CD6
 
     Import-Module PSReadLine
 
