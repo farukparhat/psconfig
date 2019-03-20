@@ -247,6 +247,7 @@ function Initialize-Personal-Powershell
     & cp $shortcutPath $powershellShortcutPath
 
     Import-Module Posh-Git
+    $GitPromptSettings.BeforeStatus.Text = "`n["
     $GitPromptSettings.AfterStatus.Text = "]`n"
     $GitPromptSettings.DefaultPromptPath.ForegroundColor = 0x569CD6
 
