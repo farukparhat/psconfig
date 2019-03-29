@@ -16,7 +16,7 @@ function sublime ($file)
 
 function get-today
 {
-    return Get-Date -UFormat "%Y-%m-%d"
+    return Get-Date -UFormat "%Y-%m-%d-%H:%M"
 }
 
 # ------ Notes ------
@@ -206,6 +206,18 @@ function e ($file)
     }
 }
 
+# ------ Utilities ------
+
+function copy-file($source, $destination)
+{
+    run-in-another-window
+}
+
+function run-in-another-window($command)
+{
+    & cmd /c start powershell -Command { iex $command; pause }
+}
+
 # ------ Directory Commands ------
 
 function ws
@@ -258,6 +270,7 @@ function Initialize-Personal-Powershell
     Remove-PSReadlineKeyHandler "Ctrl+r"
 
     Import-Module PSFzf
+    Import-Module BitsTransfer
 }
 
 Initialize-Personal-Powershell
