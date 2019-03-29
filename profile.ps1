@@ -66,6 +66,22 @@ function notes-new ($directory)
     }
 }
 
+function notes-search ($pattern)
+{
+    if (!$pattern)
+    {
+        echo "Please enter a pattern to search for"
+        return
+    }
+
+    pushd
+    notes
+
+    rg -i $pattern
+
+    popd
+}
+
 # ------ Git ------
 
 function git-sync
@@ -181,6 +197,12 @@ function git-commit-and-push ($message)
     }
 }
 
+# ------ Visual Studio Code ------
+
+function code($args)
+{
+    & code-insiders.cmd $args
+}
 # ------ Fast Edits ------
 
 function evim
