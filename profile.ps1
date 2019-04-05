@@ -16,7 +16,7 @@ function sublime ($file)
 
 function get-today
 {
-    return Get-Date -UFormat "%Y-%m-%d-%H:%M"
+    return Get-Date -UFormat "%Y-%m-%d"
 }
 
 # ------ Notes ------
