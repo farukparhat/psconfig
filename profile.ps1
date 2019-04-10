@@ -33,10 +33,9 @@ function notes-todo
     $prevDir = pwd
     cd $notesPath
 
-    $todo = dir -Recurse | sls -Pattern "- \[ \]"
+    rg -i "\- \[ \]"
 
     cd $prevDir
-    return $todo
 }
 
 function notes-sync
