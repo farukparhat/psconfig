@@ -302,8 +302,6 @@ function Initialize-Personal-Powershell
 
     Import-Module PSFzf
     Import-Module BitsTransfer
-
-    $env:FZF_DEFAULT_COMMAND = "rg --files"
 }
 
 Initialize-Personal-Powershell
