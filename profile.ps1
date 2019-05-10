@@ -7,6 +7,16 @@ if (Test-Path($ChocolateyProfile)) {
 
 # ------ Shortcuts ------
 
+function d ($path)
+{
+    pushd $path
+}
+
+function d-
+{
+    popd
+}
+
 function sublime ($file)
 {
     & 'c:\program files\sublime text 3\subl.exe' $file
