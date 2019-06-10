@@ -17,6 +17,30 @@ function d-
     popd
 }
 
+function Find-File($pattern)
+{
+    if (!$pattern)
+    {
+        Write-Error "Please type the pattern you wish to search for"
+        return
+    }
+
+    & rg --files --iglob "*$pattern*"
+}
+Set-Alias ff Find-File
+
+function Find-String($pattern)
+{
+    if (!$pattern)
+    {
+        Write-Error "Please type the pattern you wish to search for"
+        return
+    }
+
+    & rg -i $pattern
+}
+Set-Alias f Find-String
+
 function sublime ($file)
 {
     & 'c:\program files\sublime text 3\subl.exe' $file
