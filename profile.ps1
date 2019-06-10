@@ -208,10 +208,6 @@ function git-commit-and-push ($message)
 
 # ------ Visual Studio Code ------
 
-function code($args)
-{
-    & code-insiders.cmd $args
-}
 # ------ Fast Edits ------
 
 function evim
